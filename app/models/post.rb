@@ -3,6 +3,10 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
   has_many :comments
   has_many :users, through: :comments
+  accepts_nested_attributes_for :categories
 
+  def uniq_users
+    users.uniq
+  end
 
 end
