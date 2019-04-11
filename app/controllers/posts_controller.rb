@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
+    @users = @post.users.distinct!
+    @new_comment = Comment.new(post: @post)
   end
 
   def index
