@@ -1,0 +1,16 @@
+<h4>Add Comment:</h4>
+<%= form_for comment do |f| %>
+
+  <%= f.collection_select :user_id, User.all, :id, :username, {include_blank: 'Select a User'} %>
+  <p>OR: Create new user</p>
+  <%= f.fields_for :user, comment.build_user do |user_fields| %> <br>
+    <p>Username: <%= user_fields.text_field :username %></p>
+    <p>Email: <%= user_fields.text_field :email %> </p>
+  <% end %>
+
+  <%= f.label "Comment:" %><br>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+
+  <%= f.submit %>
+<% end %>
